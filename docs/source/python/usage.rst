@@ -15,9 +15,9 @@ ello, entrar a python y escribir:
 
 .. code-block::
 
-   >>> x = 1
-   >>> y = 2
-   >>> print(x+y)
+   x = 1
+   y = 2
+   print(x+y)
 
 
 Para practicar las distintas formas de correr esto desde un archivo, 
@@ -35,19 +35,19 @@ Para ejecutarlo se puede hacer desde una terminal:
 
 .. code-block::
 
-   $ python simple.py
+   python simple.py
 
 Otras opciones son:
 
 .. code-block::
 
-    $ python3
-    >>> exec(open('simple.py').read())
+    # python3
+    exec(open('simple.py').read())
 
-    $ python2
-    >>> execfile('simple.py')
+    # python2
+    execfile('simple.py')
 
-    $ ipython3
-    >>> load simple.py
-    >>> run simple.py
+    # ipython3
+    load simple.py
+    run simple.py
 
