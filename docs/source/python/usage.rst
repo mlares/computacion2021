@@ -14,6 +14,7 @@ La primera forma es correr las sentencias de manera interactiva.  Para
 ello, entrar a python y escribir:
 
 .. code-block::
+
    >>> x = 1
    >>> y = 2
    >>> print(x+y)
@@ -24,6 +25,7 @@ vamos a escribir un script muy simple, y
 guardarlo en un archivo que se llame simple.py:
 
 .. code-block::
+
    # contenidos del script simple.py
    x = 1
    y = 2
