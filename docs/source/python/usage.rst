@@ -24,7 +24,7 @@ Para practicar las distintas formas de correr esto desde un archivo,
 vamos a escribir un script muy simple, y 
 guardarlo en un archivo que se llame simple.py:
 
-.. code-block::
+.. code-block:: python
 
    # contenidos del script simple.py
    x = 1
@@ -33,13 +33,13 @@ guardarlo en un archivo que se llame simple.py:
 
 Para ejecutarlo se puede hacer desde una terminal:
 
-.. code-block::
+.. code-block:: python
 
    python simple.py
 
 Otras opciones son:
 
-.. code-block::
+.. code-block:: python
 
     # python3
     exec(open('simple.py').read())
