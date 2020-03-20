@@ -1,7 +1,11 @@
+.. https://docutils.sourceforge.io/docs/user/rst/quickref.html
+
 
 *******************************
 Interactuando con python
 *******************************
+
+.. _usage:
 
 Cómo correr un script de python
 ===============================

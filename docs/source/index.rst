@@ -29,6 +29,9 @@ Ayuda para python
 
    python/gettingstarted
    python/usage
+   python/ipython
+   python/help
+   python/modules
 
 ***********************
 Ayuda para las guias
