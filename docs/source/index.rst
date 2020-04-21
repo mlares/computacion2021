@@ -32,6 +32,7 @@ Ayuda para python
    python/ipython
    python/help
    python/modules
+   python/plots
 
 ***********************
 Ayuda para las guias
