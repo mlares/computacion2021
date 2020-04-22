@@ -14,13 +14,13 @@ El objetivo no es aprenderlos, sino saber que existen varias opciones
 y disminuir un poco la confusión que se puede producir al principio
 al buscar ayuda y bibliografía:
 
-* Matplotlib
-* Seaborn
-* Plotly
-* Bokeh
-* Altair
-* Pygal
-* Pandas
+* `Matplotlib <https://matplotlib.org/>`_
+* `Seaborn <https://seaborn.pydata.org/>`_
+* `Plotly <https://plotly.com/python/>`_
+* `Bokeh <https://docs.bokeh.org/en/latest/index.html>`_
+* `Altair <https://altair-viz.github.io/>`_
+* `Pygal <http://www.pygal.org/en/stable/>`_
+* `Pandas <https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html>`_
 
 La elección de una de estas herramientas para hacer un gráfico depende del
 contexto, para qué se quiere hacer el gráfico, dónde se va a mostrar y a partir
@@ -42,6 +42,8 @@ puede instalar con el comando ``pip``:
 .. code::
 
    pip install -U matplotlib
+
+Si eso no funciona, `consultar los detalles de la documentación <https://matplotlib.org/3.1.1/users/installing.html>`_.
 
 Una vez instalado, se puede acceder al módulo desde un entorno de python (es
 decir, luego de "entrar" a python) con el comando import:
@@ -145,7 +147,20 @@ La orientación a objetos es un paradigma de programación (es decir, una forma 
 programar justificada teóricamente) que permite estructurar el código utilizando
 objetos que tienen propiedades o comportamientos.  Por ejemplo, un objeto de
 tipo "animal" puede moverse de cierta forma, como caminar o nadar
-(comportamiento) o tener cierta cantidad de patas (propiedad).  Un programa
+(comportamiento o método) o tener cierta cantidad de patas (propiedad).
+Los comportamientos se implementan mediante funciones y se llaman
+"métodos".
+
+Para ilustrar de modo genérico y sin formalidad cómo funciona esto, pensemos en definir
+un objeto de tipo animal que tiene la propiedad de moverse:
+
+.. code-block:: python
+
+    oveja = animal()
+    movimiento = oveja.movimiento()
+
+
+Un programa
 puede tener varios objetos de tipo "animal" y no hace falta programar cada uno,
 sino que basta con decir que "es un animal" y fácilmente adquiere la propiedad
 de "número de patas" o el comportamiento de "forma de moverse".
@@ -156,16 +171,42 @@ Para hacer gráficos usando este concepto, trabajamos con dos objetos:
    ``axes``)
 2. el objeto ``axes``, que es la región que contiene un gráfico individual. No es
    lo mismo que los ejes (x/y axis).
- 
-En la siguiente figura (tomada de la documentacion de Matplotlib) se muestran
+
+Así, por ejemplo, siguiendo la idea del ejemplo anterior, podremos
+hacer cosas como esta:
+
+.. code-block:: python
+
+    # plt puede crear una figura
+    figura = plt.figure()
+
+    # el objeto figura puede crear un area de trazado
+    ejes = figura.add_subplot()
+
+    # los ejes pueden adoptar nombres
+    ejes.set_xlabel('eje X')
+    ejes.set_ylabel('eje Y')
+    # o pueden pasarse a escala logaritmica
+    ejes.set_xscale('log')
+
+
+Allí por ejemplo el método del objeto ``figura`` que crea los ejes se llama
+``add_subplot`` y el método del objeto ``ejes`` que le permite da un
+nombre al eje X se llama ``set_xlabel``.  Es costumbre en la comunidad
+de python llamarle ``fig`` a una figura y ``ax`` (o ``axes``) al area de trazado.
+
+
+En la siguiente figura se muestran
 estos dos elementos, además de otros que usaremos para personalizar el aspecto
 visual del gráfico.  Figure se refiere a toda la figura, y axes a la parte
 interior del sistema de ejes.
 
-.. image:: sphx_glr_anatomy_001.png
+.. image:: partes_del_plot.png
     :width: 600px
     :align: center
     :alt: Elementos de un gráfico   
+
+Es posible encontrar más detalles en `esta otra versión <https://matplotlib.org/3.2.1/gallery/showcase/anatomy.html>`_.
        
 
 Para generar una gráfico usando objetos, hay que crear un objeto de tipo ``figure``, y luego un objeto de tipo ``axes``, que es donde se realizará el gráfico.
@@ -273,12 +314,38 @@ Obteniendo el gráfico
 Dependiendo de la forma de trabajar, necesitaremos hacer distintas cosas para
 obtener o visualizar el gráfico.
 
-* Visualización en pantalla
+* Visualización en pantalla *
+
+Para visualizar un gráfico en pantalla hay que pedirlo explícitamente con el método ``show`` de ``pyplot``.
+
+.. code-block:: python
+
+   plt.show()
+
 * Utilizando Notebooks
+
+  Los notebooks son herramientas interactivas que corren en un
+  navegador y que permiten combinar elementos de varios tipos, tales
+  como gráficos, markdown, código y latex.   
+  
+  Para ver los gráficos, en una celda del notebook hay que escribir el
+  comando:
+
+.. code-block:: python
+
+    %matplotlib inline
+
+
 * Salida a un archivo
 
+  Hay que guardar el gráfico en un archivo, con el método ``savefig``
+  de una figura.
 
+.. code-block:: python
 
+   fig.savefig('MiFigura.png')
+
+Más detalles se pueden encontrar `por ejemplo aquí <https://jakevdp.github.io/PythonDataScienceHandbook/04.00-introduction-to-matplotlib.html>`_
 
 
 
@@ -432,6 +499,14 @@ poco:
     :width: 600px  
     :align: center 
 
+Queremos cambiar la apariencia del texto usado para etiquetar
+(``labels``) las lineas que marcan la escala (``ticks``).
+Esto es común porque en general hace falta agrandar la fuente del
+texto para que el gráfico sea legible al ser mostrado en distintos
+medios (por ej. una presentación).  Usaremos las siguientes funciones
+de 
+
+
 .. code-block:: python
 
    fig, ax = plt.subplots()
@@ -457,7 +532,6 @@ poco:
     :width: 600px  
     :align: center 
 
- 
 
 
 Atributos de las series de datos
@@ -466,31 +540,30 @@ Atributos de las series de datos
 Ahora tratemos de mejorar el contenido de los plots.  Hay muchos
 atributos para trabajar, los más comunes son:
 
- 
 +------------------------+----------------------------+--------------------------------------------------+
-|atributo                | modifica                   | opciones                                         |
+| atributo               | modifica                   | opciones                                         |
 +========================+============================+==================================================+
-|alpha                   | transparencia              | escalar                                          |
+| alpha                  | transparencia              | escalar                                          |
 +------------------------+----------------------------+--------------------------------------------------+
-|color or c              | color                      | color de matplotlib                              |
+| color or c             | color                      | color de matplotlib                              |
 +------------------------+----------------------------+--------------------------------------------------+
-|label                   | etiqueta                   | cadena de carateres                              |
+| label                  | etiqueta                   | cadena de carateres                              |
 +------------------------+----------------------------+--------------------------------------------------+
-|linestyle or ls         | tipo de linea              | ``[ '-' | '--' | '-.' | ':' | 'steps' | ...]``   |
+| linestyle or ls        | tipo de linea              | ``[ '-' | '--' | '-.' | ':' | 'steps' | ...]``   |
 +------------------------+----------------------------+--------------------------------------------------+
-|linewidth or lw         | ancho de linea             | escalar                                          |
+| linewidth or lw        | ancho de linea             | escalar                                          |
 +------------------------+----------------------------+--------------------------------------------------+
-|marker                  | marcador                   | ``[ '+' | ',' | '.' | '1' | '2' | '3' | '4' ]``  |
+| marker                 | marcador                   | ``[ '+' | ',' | '.' | '1' | '2' | '3' | '4' ]``  |
 +------------------------+----------------------------+--------------------------------------------------+
-|markeredgecolor or mec  | color de borde de marcador |color de  matplotlib                              |
+| markeredgecolor or mec | color de borde de marcador | color de  matplotlib                             |
 +------------------------+----------------------------+--------------------------------------------------+
-|markeredgewidth or mew  | grosor del marcador        | escalar                                          |
+| markeredgewidth or mew | grosor del marcador        | escalar                                          |
 +------------------------+----------------------------+--------------------------------------------------+
-|markerfacecolor or mfc  | color de relloeno marcador | color de matplotlib                              |
+| markerfacecolor or mfc | color de relloeno marcador | color de matplotlib                              |
 +------------------------+----------------------------+--------------------------------------------------+
-|markersize or ms        | tamaño del marcador        | escalar                                          |
+| markersize or ms       | tamaño del marcador        | escalar                                          |
 +------------------------+----------------------------+--------------------------------------------------+
-|markevery               | un marcador cada...        | entero                                           |
+| markevery              | un marcador cada...        | entero                                           |
 +------------------------+----------------------------+--------------------------------------------------+
 
 
@@ -562,16 +635,74 @@ o con líneas:
    ax.set_yticklabels(labels=labels, fontsize=16)      
    ax.set_xlabel('x', fontsize=22)
    ax.set_ylabel('y', fontsize=22)
-   ax.legend(loc='lower right', frameon=False,
+   ax.legend(loc='lower right', frameon=false,
              borderaxespad=4,
              ncol=2, handlelength=3)
    ax.xaxis.label.set_size(16)
    fig.tight_layout()
    fig.show()     
 
-
-
 .. image:: evenbetter2.png
+    :width: 800px  
+    :align: center 
+                     
+
+
+Por último veamos cómo modificar las líneas incluyendo marcadores.  El
+siguiente código implementa varios tipos de marcadores para mostrar
+cómo se usa.  No están explicados en detalles, pero habiendo seguido
+este tutorial es fácil buscar cómo se usan e incluso explorar muchas
+más opciones para graficar.
+
+
+.. code-block:: python
+
+   from matplotlib import pyplot as plt
+   import numpy as np
+   x = np.linspace(-1, 1, 100)
+   y1 = x
+   y2 = x**2
+   y3 = x**3
+   y4 = x**4
+
+   fig = plt.figure()
+   fig.clf()
+   ax = fig.subplots(1,1)
+
+   ax.plot(x, y1, color='cornflowerblue', linewidth=2, label='y=x',
+           linestyle='-', marker='o', markerfacecolor='white',
+           markeredgewidth=1, markersize=6, markevery=10, alpha=1)
+
+   ax.plot(x, y2, color='limegreen', linewidth=2, label='y=x^2',
+           linestyle='--', marker='D', markerfacecolor='limegreen',
+           markeredgewidth=1, markersize=6, markevery=10, alpha=1)
+   
+   ax.plot(x, y3, color='tomato', linewidth=2, label='y=x^3',
+           linestyle='-', marker='s', markerfacecolor='white',
+           markeredgewidth=1, markersize=6, markevery=10, alpha=1)
+   
+   ax.plot(x, y4, color='darkorchid', linewidth=1, label='y=x^4',
+           linestyle='-', marker='o', markerfacecolor='darkorchid',
+           markeredgewidth=1, markersize=3, markevery=10, alpha=1)
+           
+
+   ticks = [(-1.0 + 0.5*i) for i in range(5)]
+   labels = [f"{s: 2.1f}" for s in ticks]
+
+   ax.set_xticks(ticks=ticks)
+   ax.set_xticklabels(labels=labels, fontsize=16)
+   ax.set_yticks(ticks=ticks)
+   ax.set_yticklabels(labels=labels, fontsize=16)      
+   ax.set_xlabel('x', fontsize=22)
+   ax.set_ylabel('y', fontsize=22)
+   ax.legend(loc='lower right', frameon=False,
+             borderaxespad=4,
+             ncol=2, handlelength=3)
+   ax.xaxis.label.set_size(16)
+   fig.tight_layout()
+   fig.show()
+
+.. image:: markers.png
     :width: 800px  
     :align: center 
                      
