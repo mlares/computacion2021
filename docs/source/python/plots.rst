@@ -526,6 +526,26 @@ Que da algo así:
     :width: 400px  
     :align: center
 
+
+También se puede usar la función ``add_axes``, que hace lo mismo pero
+tiene una sintaxis un poco diferente, ya que permite elegir
+explícitamente el tamaño y la ubicación de los gráficos.
+
+Los argumentos de `add_axes  <https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.add_axes>`_ son las coordenadas de la esquina inferior izquierda del gráfico, y los tamaños de los ejes en el gráfico.
+
+Ver por ejemplo qué produce el siguiente código:
+
+.. code-block:: python
+
+   f = plt.figure()
+   ax1 = f.add_axes([.1, .1, .85, .6])
+   ax2 = f.add_axes([.8, .8, .18, .18])
+   ax3 = f.add_axes([.2, .2, .5, .1])
+   ax1.set_xlim([0, 1000])
+   ax3.set_ylim([0.1, 0.3])
+   plt.show()
+
+
    
 
 Varias lineas en el mismo grafico
