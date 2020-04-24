@@ -140,6 +140,44 @@ En la línea 6 estamos creando un gráfico a partir de los arrays x e y, y a
 partir de allí todo lo que hacemos con ``plt`` se aplica a ese gráfico.
 
 
+Al usar el método ``pylab`` (ver más adelante), es posible modificar los atributos de los
+gráficos de manera interactiva e ir visualizando los cambios.  En ese
+caso no se usa ``plt.`` sino que se escribe directamente la función,
+de manera similar a Matlab:
+ 
+.. code-block:: python
+
+   # luego de entrar al interprete usando ipython --pylab:
+
+   import numpy as np
+   from matplotlib import pyplot as plt
+   x = np.linspace(0, 2*np.pi, 100)
+   y = np.sin(x)
+   plot(x, y)
+   xlabel('x')
+   ylabel('sin(x)')
+   title('Grafico de la funcion seno')
+
+alternativamente,
+ 
+.. code-block:: python
+
+   # luego de entrar al interprete usando ipython --pylab:
+
+   import numpy as np
+   from pylab import *
+
+   x = np.linspace(0, 2*np.pi, 100)
+   y = np.sin(x)
+   plot(x, y)
+   xlabel('x')
+   ylabel('sin(x)')
+   title('Grafico de la funcion seno')
+   show()
+
+
+notar que en este último ejemplo importamos todas las funciones del módulo ``pylab``.  Aquí el gráfico no será interactivo.
+
 Pyplot al estilo Orientación a Objetos
 --------------------------------------
 
@@ -307,6 +345,30 @@ parámetros de ``plt.subplots`` (queda como ejercicio).
 
 
 
+Otra forma de trabajar que se puede encontrar en los recursos
+destinados a este tema y que también es orientada a objetos, consiste
+en guardar el gráfico como un objeto.  Por ejemplo, al graficar una
+línea guardamos el objeto de tipo "línea" (``matplotlib.lines.Line2D``).
+Luego a este objeto lo podemos modificar usando las funciones "set",
+por ejemplo:
+
+
+.. code-block:: python
+   :linenos:
+
+   import matplotlib.pyplot as plt
+   f = plt.figure()
+   ax = f.add_subplot()
+   l,  = ax.plot([1,2,3],[5,3,5])
+   l.set_color('tomato')
+   l.set_linestyle('--')
+   l.set_linewidth(3)
+   l.set_marker('o')
+   l.set_markeredgecolor('o')
+   l.set_markeredgewidth('o')
+   l.set_markerfacecolor('o')
+   plt.show()
+
 
 Obteniendo el gráfico
 --------------------------------------
@@ -314,39 +376,72 @@ Obteniendo el gráfico
 Dependiendo de la forma de trabajar, necesitaremos hacer distintas cosas para
 obtener o visualizar el gráfico.
 
-* Visualización en pantalla *
+Se pueden mencionar las siguientes alternativas para trabajar en un
+entorno de python y visualizar el resultado de un gráfico con
+matplotlib:
 
-Para visualizar un gráfico en pantalla hay que pedirlo explícitamente con el método ``show`` de ``pyplot``.
+1. Visualización en pantalla
 
-.. code-block:: python
+   Para visualizar un gráfico en pantalla hay que pedirlo explícitamente con el método ``show`` de ``pyplot``.
 
-   plt.show()
+   .. code-block:: python
 
-* Utilizando Notebooks
+      plt.show()
 
-  Los notebooks son herramientas interactivas que corren en un
-  navegador y que permiten combinar elementos de varios tipos, tales
-  como gráficos, markdown, código y latex.   
-  
-  Para ver los gráficos, en una celda del notebook hay que escribir el
-  comando:
+2. Gráficos interactivos
 
-.. code-block:: python
+   Se puede interactuar con un gráfico entrando al intérprete de ipython 
+   con la opción --pylab:
 
-    %matplotlib inline
+   .. code::
+
+      $ ipython --pylab
+
+   Notar que aquí el símbolo "$" corresponde al prompt del sistema.
 
 
-* Salida a un archivo
+3. Utilizando Notebooks
 
-  Hay que guardar el gráfico en un archivo, con el método ``savefig``
-  de una figura.
+   Los notebooks son herramientas interactivas que corren en un
+   navegador y que permiten combinar elementos de varios tipos, tales
+   como gráficos, markdown, código y latex.   
 
-.. code-block:: python
+   Para ver los gráficos, en una celda del notebook hay que escribir el
+   comando:
 
-   fig.savefig('MiFigura.png')
+   .. code-block:: python
 
-Más detalles se pueden encontrar `por ejemplo aquí <https://jakevdp.github.io/PythonDataScienceHandbook/04.00-introduction-to-matplotlib.html>`_
+      %matplotlib inline
 
+
+   El programa para trabajar con notebooks más usado en `Jupyter <https://jupyter.org/>`_.
+
+
+4. Salida a un archivo
+
+   Hay que guardar el gráfico en un archivo, con el método ``savefig``
+   de una figura.
+
+   .. code-block:: python
+
+      fig.savefig('MiFigura.png')
+
+   Más detalles se pueden encontrar `por ejemplo aquí <https://jakevdp.github.io/PythonDataScienceHandbook/04.00-introduction-to-matplotlib.html>`_
+
+   Los formatos más usados son PNG, PDF y SVG.  Para más información
+   se puede consultar la documentación de `savefig <https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.savefig.html>`_.
+
+
+
+5. Entornos de desarrollo integrado
+
+   Existen muchos programas que permiten desarrollar códigos y
+   graficar en el mismo entorno.  Algunos de los que se pueden
+   mencionar son:
+
+   * `Spyder <https://www.spyder-ide.org/>`_
+   * `PyCharm <https://www.jetbrains.com/pycharm/>`_
+   * `VSC <https://code.visualstudio.com/>`_
 
 
 
