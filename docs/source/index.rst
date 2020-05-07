@@ -42,6 +42,7 @@ Ayuda para las guias
    :maxdepth: 2
 
    guias/guia1
+   parciales/roots
 
 
 ******************
