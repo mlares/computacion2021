@@ -36,6 +36,8 @@ Primero definimos y visualizamos la función:
 Bisección
 =================
 
+.. https://www.geogebra.org/m/mNY3NPuU
+
 Busquemos las raices con el metodo de la bisección:
 
 .. code:: python
@@ -85,6 +87,8 @@ Para usar la función:
    N = 100
    xn, fxn, errx, errf = bisec(f, a, b, Ex, Ef, N)
 
+
+
 Newton
 =================
 
@@ -94,7 +98,7 @@ Recordemos la idea del método:
 
     <embed>
 
- <iframe scrolling="no" src="https://www.geogebra.org/material/iframe/id/29635304/width/800/height/700/border/888888/rc/false/ai/false/sdz/false/smb/false/stb/false/stbh/true/ld/false/sri/false" width="800px" height="700px" style="border:0px;" allowfullscreen> </iframe>
+ <iframe scrolling="no" src="https://www.geogebra.org/material/iframe/id/29635304/width/800/height/600/border/888888/rc/false/ai/false/sdz/false/smb/false/stb/false/stbh/true/ld/false/sri/false" width="800px" height="600px" style="border:0px;" allowfullscreen> </iframe>
 
     </embed>
 
@@ -150,8 +154,9 @@ Para usar la función:
 Secante
 =================
 
+
+
 Busquemos las raices con el metodo de la secante:
- 
 
 .. code:: python
 
@@ -194,9 +199,16 @@ Para usar la función:
 Punto fijo
 =================
 
-Busquemos las raices con el metodo del punto fijo:
+.. raw:: html
+
+    <embed>
+
+ <iframe scrolling="no" src="https://www.geogebra.org/material/iframe/id/29653854/width/800/height/600/border/888888/rc/false/ai/false/sdz/false/smb/false/stb/false/stbh/true/ld/false/sri/false" width="800px" height="600px" style="border:0px;" allowfullscreen> </iframe>
+
+    </embed>
  
- 
+
+Busquemos las raices con el metodo del punto fijo: 
 
 .. code:: python
 
@@ -259,5 +271,4 @@ También podemos graficar las distintas aproximaciones en la iteración:
 
 
 
-#ver:
-#https://www.geogebra.org/m/Q2yMukrD
+.. https://www.geogebra.org/m/Q2yMukrD
