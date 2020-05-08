@@ -153,8 +153,14 @@ Para usar la función:
 
 Secante
 =================
+ 
+.. raw:: html
 
+    <embed>
 
+ <iframe scrolling="no" src="https://www.geogebra.org/material/iframe/id/29660192/width/800/height/600/border/888888/rc/false/ai/true/sdz/true/smb/true/stb/true/stbh/true/ld/true/sri/true" width="800px" height="600px" style="border:0px;" allowfullscreen> </iframe>
+
+    </embed> 
 
 Busquemos las raices con el metodo de la secante:
 
