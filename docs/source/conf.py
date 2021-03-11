@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'comp2020'
+project = 'comp2021'
 copyright = '2020, Marcelo Lares'
 author = 'Marcelo Lares'
 

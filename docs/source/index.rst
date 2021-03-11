@@ -1,9 +1,9 @@
 ###################################
-Práctico de Computacion 2020
+Práctico de Computacion 2021
 ###################################
 
 Aquí encontrarás material para el cursado de la materia
-Computación 2020 de Famaf.
+Computación 2021 de Famaf.
 Estos recursos corresponden al cursado virtual de la materia, 
 de acuerdo a los lineamientos establecidos por la Res. Rectoral
 387/2020.
