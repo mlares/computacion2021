@@ -31,7 +31,9 @@ Ayuda para python
    python/usage
    python/ipython
    python/help
-   python/modules
+   python/modulos
+   python/listas
+   python/strings
    python/plots
 
 ***********************
