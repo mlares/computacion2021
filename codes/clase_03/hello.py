@@ -1,1 +1,0 @@
-print("\nHola mundo!\n")
