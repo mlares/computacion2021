@@ -397,6 +397,109 @@ def cuad_simpson_datos(x0, x2, f=None, y0=None, y1=None, y2=None,
 
 # REGLAS COMPUESTAS
 
+# PUNTO MEDIO
+
+def punto_medio_compuesta(x, f=None, y=None):
+    """Implementación de la regla del punto medio compuesta
+    
+    Parameters
+    ----------
+    x: list or array
+       Lista de valores de x
+    f: function (1 parameter)
+       La función a integrar
+    y: list or array
+       La lista de valores de y en los puntos medios
+    
+    Returns
+    -------
+    aprox: Aproximación de la integral por la regla del punto medio compuesta
+    
+    Notes
+    -----
+    Este código es parte del curso "Computación", Famaf
+    Uso:  
+        punto_medio_compuesta(x, f=f)
+    """
+    import numpy as np
+
+    # Primero verificar si la particion es regular    
+    x = np.array(x)
+    x.sort()    
+    H = (max(x) - min(x)) / (len(x) - 1)
+    equiesp = np.std(np.diff(x)) < H * 1.e-6
+    
+    if not equiesp:
+        raise ValueError("La partición no es regular.")
+
+    # Calcular los valores de y en los puntos medios (si se pasó una función)
+    if (y is None) and (f is not None):
+        mid_points = (x[:-1] + x[1:]) / 2
+        y = f(mid_points)
+        
+    # Si no se pasa la función f, se debe proporcionar y
+    if y is None:
+        raise ValueError("Debe proporcionar una función o una lista de valores de y.")
+    
+    # Calcular la integral por la regla del punto medio compuesta
+    aprox = H * np.sum(y)
+    
+    return aprox
+
+# TRAPECIO
+
+def trapecio_compuesta(x, f=None, y=None):
+    """Implementación de la regla del trapecio compuesta
+    
+    Parameters
+    ----------
+    x: list or array
+       Lista de valores de x
+    f: function (1 parameter)
+       La función a integrar
+    y: list or array
+       La lista de valores de y
+    
+    Returns
+    -------
+    aprox: Aproximación de la integral por la regla del trapecio compuesta
+    
+    Notes
+    -----
+    Este código es parte del curso "Computación", Famaf
+    Uso:  
+        trapecio_compuesta(x, f=f)
+    """
+    import numpy as np
+
+    # Primero verificar si la partición es regular    
+    x = np.array(x)
+    x.sort()    
+    H = (max(x) - min(x)) / (len(x) - 1)
+    equiesp = np.std(np.diff(x)) < H * 1.e-6
+    
+    if not equiesp:
+        raise ValueError("La partición no es regular.")
+    
+    # Calcular los valores de y (si se pasó una función)
+    if (y is None) and (f is not None):
+        y = f(x)
+        
+    # Si no se pasa la función f, se debe proporcionar y
+    if y is None:
+        raise ValueError("Debe proporcionar una función o una lista de valores de y.")
+    
+    # Calcular la integral por la regla del trapecio compuesta
+    n = len(x)
+    aprox = (y[0] + y[-1] + 2 * np.sum(y[1:-1])) * (H / 2)
+    
+    return aprox
+
+
+
+
+# SIMPSON
+
 def cuad_simpson_compuesta(x, f=None, y=None):
     """Implementación de la regla de simpson
     
@@ -447,7 +550,7 @@ def cuad_simpson_compuesta(x, f=None, y=None):
             
     return aprox
 
-def cuad_simpson_compuesta_II(f, I, eps):
+def cuad_simpson_compuesta_II(f, I, eps, apply_correc=False):
     """Implementación de la regla de Simpson
     
     Parameters
@@ -479,6 +582,8 @@ def cuad_simpson_compuesta_II(f, I, eps):
         x = np.linspace(I[0], I[1], n)
         aprox = cuad_simpson_compuesta(x, f=f)
         delta = abs(aprox - aprox_old)
+        if apply_correc:
+            delta = delta/15
         aprox_old = aprox
         n += 1
         if n>5000:
