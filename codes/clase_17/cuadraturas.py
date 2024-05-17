@@ -456,6 +456,7 @@ def cuad_simpson_compuesta_II(f, I, eps):
        Intervalo de integración, ingresado como lista de dos elementos
     f: function (1 parameter)
        La función a integrar
+    eps: tolerancia
     
     Returns
     -------
@@ -479,7 +480,7 @@ def cuad_simpson_compuesta_II(f, I, eps):
         aprox = cuad_simpson_compuesta(x, f=f)
         delta = abs(aprox - aprox_old)
         aprox_old = aprox
-        n += 10
+        n += 1
         if n>5000:
             break
 
